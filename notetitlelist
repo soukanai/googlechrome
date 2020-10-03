@@ -1,0 +1,17 @@
+var htmlReq = new XMLHttpRequest();
+htmlReq.responseType  = "document";
+
+htmlReq.onload = function(e){
+
+  var dom = e.target.responseXML;
+  var titles = dom.querySelectorAll('h3');
+  var urls = dom.querySelectorAll('h3 a');
+
+  for (var i = 0; i < titles.length; i++) {
+    var titleTexts = titles[i].innerText;
+    $('#list').append(`<p>${titleTexts}</p>`);
+  }
+};
+
+htmlReq.open("get", "https://note.com/soukanai");
+htmlReq.send();
